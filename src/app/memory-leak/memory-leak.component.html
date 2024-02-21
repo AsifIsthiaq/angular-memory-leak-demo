@@ -1,0 +1,18 @@
+<h1>Child</h1>
+
+<button (click)="click()">I do Nothing</button>
+<br>
+<button (click) = "changeColor()">Color Change</button>
+
+<h1 [style.color]="colorChange ? 'red' : 'black'">Employees</h1>
+
+<div *ngFor="let emp of employees">
+    <p>Id: {{emp.id}}</p>
+    <p>Name: {{emp.employee_name}}</p>
+    <p>Salary: {{emp.employee_salary}}</p>
+    <p>Salary Weekly: {{getWeeklySalary(emp.employee_salary)}}</p>
+    <hr>
+</div>
+
+<hr>
+<app-nested-one></app-nested-one>
