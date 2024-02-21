@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MemoryLeakComponent } from './memory-leak/memory-leak.component';
 import { MemoryLeakFixComponent, SalaryPipe } from './memory-leak-fix/memory-leak-fix.component';
 import { NestedOneComponent } from './nested-one/nested-one.component';
+import { ChangeDetectionFixComponent } from './change-detection-fix/change-detection-fix.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { NestedOneComponent } from './nested-one/nested-one.component';
     MemoryLeakComponent,
     MemoryLeakFixComponent,
     NestedOneComponent,
-    SalaryPipe
+    SalaryPipe,
+    ChangeDetectionFixComponent
   ],
   imports: [
     BrowserModule,

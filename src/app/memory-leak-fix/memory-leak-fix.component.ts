@@ -27,7 +27,9 @@ export class MemoryLeakFixComponent {
   employees: any;
 
   constructor(private dataShareService: DataShareService) {
-    this.employees = this.dataShareService.data;
+    this.employees = this.dataShareService.data.map(e => {
+      return {...e, 'employee_salary_weekly' : e.employee_salary/52}
+    });;
     /*
 .map(e => {
     return {...e, 'employee_salary_weekly' : e.employee_salary/52}
