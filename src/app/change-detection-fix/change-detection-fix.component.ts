@@ -31,7 +31,7 @@ export class ChangeDetectionFixComponent implements AfterViewInit{
   changeColor() {
     // this.callCount=0;
     this.colorChange = !this.colorChange;
-    this.cd.detectChanges();
+    // this.cd.detectChanges();
   }
 
   trackById(index: number, item: any): number {

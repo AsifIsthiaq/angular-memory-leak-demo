@@ -27,19 +27,17 @@ export class MemoryLeakFixComponent {
   employees: any;
 
   constructor(private dataShareService: DataShareService, private cd: ChangeDetectorRef) {
-    this.employees = this.dataShareService.data.map(e => {
-      return { ...e, 'employee_salary_weekly': e.employee_salary / 52 }
-    });;
+    this.employees = this.dataShareService.data;
     /*
     .map(e => {
         return {...e, 'employee_salary_weekly' : e.employee_salary/52}
       });
     */
-    setTimeout(() => {
-      this.employees[0] = { ...this.employees[0], employee_salary: 777777 };
-      console.log(this.employees[0]);
-      this.cd.detectChanges();
-    }, 5000);
+    // setTimeout(() => {
+    //   this.employees[0] = { ...this.employees[0], employee_salary: 777777 };
+    //   console.log(this.employees[0]);
+    //   this.cd.detectChanges();
+    // }, 5000);
   }
 
   getWeeklySalary(salary: number) {
@@ -48,11 +46,10 @@ export class MemoryLeakFixComponent {
   }
 
   click() {
-    // this.callCount = 0;
+
   }
 
   changeColor() {
-    // this.callCount=0;
     this.colorChange = !this.colorChange;
   }
 
