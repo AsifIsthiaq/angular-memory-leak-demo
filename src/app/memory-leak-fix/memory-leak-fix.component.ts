@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { DataShareService } from '../service/data-share.service';
 
 import { Pipe, PipeTransform } from '@angular/core';
@@ -11,7 +11,7 @@ export class SalaryPipe implements PipeTransform {
   transform(salary: any, ...args: any[]): any {
     if (salary === null || salary === undefined) return null;
     console.log("Salary Pipe Called");
-    return salary/52;
+    return salary / 52;
   }
 }
 
@@ -26,15 +26,20 @@ export class MemoryLeakFixComponent {
   colorChange: boolean = false;
   employees: any;
 
-  constructor(private dataShareService: DataShareService) {
+  constructor(private dataShareService: DataShareService, private cd: ChangeDetectorRef) {
     this.employees = this.dataShareService.data.map(e => {
-      return {...e, 'employee_salary_weekly' : e.employee_salary/52}
+      return { ...e, 'employee_salary_weekly': e.employee_salary / 52 }
     });;
     /*
-.map(e => {
-    return {...e, 'employee_salary_weekly' : e.employee_salary/52}
-  });
-*/
+    .map(e => {
+        return {...e, 'employee_salary_weekly' : e.employee_salary/52}
+      });
+    */
+    setTimeout(() => {
+      this.employees[0] = { ...this.employees[0], employee_salary: 777777 };
+      console.log(this.employees[0]);
+      this.cd.detectChanges();
+    }, 5000);
   }
 
   getWeeklySalary(salary: number) {
@@ -55,8 +60,8 @@ export class MemoryLeakFixComponent {
     return item.id;
   }
 
-  updateSalary(){
-    this.employees[0] = {...this.employees[0], employee_salary:999999};
-    this.employees[1] = {...this.employees[0], employee_salary:888888};
+  updateSalary() {
+    this.employees[0] = { ...this.employees[0], employee_salary: 999999 };
+    this.employees[1] = { ...this.employees[0], employee_salary: 888888 };
   }
 }
